@@ -1,0 +1,65 @@
+import { HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule, Optional, SkipSelf } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedUiCmsModule } from '@domgen/dgx-fe-content-management';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SalesDataAccessQuotesModule } from '@sales/data-access-quotes';
+import { BuildConfigService } from '@sales/util-foundation';
+import { environment } from '../../../environments/environment';
+import { COMPONENT_MAPPING } from '../../cms-config/cms-component-mapping.config';
+import { CMS_CONFIG } from '../../cms-config/cms-config.token';
+
+const configFactory = (buildConfigService: BuildConfigService) => {
+  return (): Promise<any> => {
+    return buildConfigService.loadConfig(environment.configBasePath);
+  };
+};
+
+const cmsConfigFactory = (buildConfigService: BuildConfigService) => {
+  return buildConfigService.getCmsConfig(COMPONENT_MAPPING);
+};
+
+@NgModule({
+  providers: [
+    {
+      provide: APP_INITIALIZER, // ensure the application isn't started until the config file has loaded.
+      useFactory: configFactory,
+      deps: [BuildConfigService],
+      multi: true,
+    },
+    {
+      provide: CMS_CONFIG,
+      useFactory: cmsConfigFactory,
+      deps: [BuildConfigService],
+    },
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    SharedUiCmsModule.forRoot(CMS_CONFIG),
+    StoreModule.forRoot(
+      {},
+      {
+        metaReducers: !environment.production ? [] : [],
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    SalesDataAccessQuotesModule,
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+  ],
+})
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() coreModule: CoreModule) {
+    if (coreModule) {
+      throw new TypeError(`CoreModule can be imported only once`);
+    }
+  }
+} // Singleton objects (services, components, forRoot(), forFeature() that are loaded only once, etc.)
