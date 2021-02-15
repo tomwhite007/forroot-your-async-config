@@ -8,8 +8,5 @@ import { LibraryConfigToken } from '../tokens/library-config.token';
   styleUrls: ['./my-configurable-component.component.scss'],
 })
 export class MyConfigurableComponentComponent {
-  constructor(
-    @Inject(LibraryConfigToken) public config: LibraryConfig,
-    @Inject('test token') public test: string
-  ) {}
+  constructor(@Inject(LibraryConfigToken) public config: LibraryConfig) {}
 }

@@ -35,7 +35,6 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
   imports: [
     BrowserModule,
     HttpClientModule,
-    // SharedUiMyConfigurableComponentModule,
     SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
   ],
   bootstrap: [AppComponent],

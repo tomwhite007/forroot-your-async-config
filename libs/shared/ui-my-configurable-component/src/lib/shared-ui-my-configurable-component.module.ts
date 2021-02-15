@@ -8,13 +8,6 @@ import { LibraryConfig } from './interfaces/library-config';
   imports: [CommonModule],
   declarations: [MyConfigurableComponentComponent],
   exports: [MyConfigurableComponentComponent],
-  providers: [
-    { provide: 'test token', useValue: 'hello' },
-    {
-      provide: LibraryConfigToken,
-      useValue: { libraryConfig: 'test123' },
-    },
-  ],
 })
 export class SharedUiMyConfigurableComponentModule {
   static forRoot(
