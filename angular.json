@@ -146,6 +146,31 @@
           }
         }
       }
+    },
+    "shared-ui-my-configurable-component": {
+      "projectType": "library",
+      "root": "libs/shared/ui-my-configurable-component",
+      "sourceRoot": "libs/shared/ui-my-configurable-component/src",
+      "prefix": "injectors-demo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui-my-configurable-component/src/**/*.ts",
+              "libs/shared/ui-my-configurable-component/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui-my-configurable-component"],
+          "options": {
+            "jestConfig": "libs/shared/ui-my-configurable-component/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

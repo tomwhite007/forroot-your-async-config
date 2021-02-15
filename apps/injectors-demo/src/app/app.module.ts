@@ -6,6 +6,7 @@ import { Config, ConfigService } from './services/config.service';
 import { environment } from '../environments/environment';
 import { ConfigToken } from './tokens/config.token';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedUiMyConfigurableComponentModule } from '@injectors-demo/shared/ui-my-configurable-component';
 
 const loadAsyncConfigFactory = (buildConfigService: ConfigService) => {
   return (): Promise<Config> => {
@@ -18,7 +19,6 @@ const returnConfigFactory = (buildConfigService: ConfigService) => {
 };
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule],
   providers: [
     {
       provide: APP_INITIALIZER, // ensure the application isn't started until the config file has loaded.
@@ -31,6 +31,11 @@ const returnConfigFactory = (buildConfigService: ConfigService) => {
       useFactory: returnConfigFactory,
       deps: [ConfigService],
     },
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
   ],
   bootstrap: [AppComponent],
 })

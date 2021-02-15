@@ -20,6 +20,9 @@
     "injectors-demo-e2e": {
       "tags": [],
       "implicitDependencies": ["injectors-demo"]
+    },
+    "shared-ui-my-configurable-component": {
+      "tags": ["scope:shared", "type:ui"]
     }
   }
 }

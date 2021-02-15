@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@injectors-demo/shared/ui-my-configurable-component": [
+        "libs/shared/ui-my-configurable-component/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
