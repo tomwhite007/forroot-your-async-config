@@ -2,6 +2,6 @@
 
 A demonstration of using modules and injectors for specific use cases
 
-- Who’s Injector is it anyway?
 - How to load a runtime config?
+- Who’s Injector is it anyway?
 - Constraints of third party forRoot
