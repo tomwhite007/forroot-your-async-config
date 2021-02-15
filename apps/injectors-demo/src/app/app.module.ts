@@ -4,9 +4,11 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Config, ConfigService } from './services/config.service';
 import { environment } from '../environments/environment';
-import { ConfigToken } from './tokens/config.token';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedUiMyConfigurableComponentModule } from '@injectors-demo/shared/ui-my-configurable-component';
+import {
+  LibraryConfigToken,
+  SharedUiMyConfigurableComponentModule,
+} from '@injectors-demo/shared/ui-my-configurable-component';
 
 const loadAsyncConfigFactory = (buildConfigService: ConfigService) => {
   return (): Promise<Config> => {
@@ -14,8 +16,8 @@ const loadAsyncConfigFactory = (buildConfigService: ConfigService) => {
   };
 };
 
-const returnConfigFactory = (buildConfigService: ConfigService) => {
-  return buildConfigService.getConfig();
+const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
+  return buildConfigService.getLibraryConfig();
 };
 @NgModule({
   declarations: [AppComponent],
@@ -27,15 +29,15 @@ const returnConfigFactory = (buildConfigService: ConfigService) => {
       multi: true,
     },
     {
-      provide: ConfigToken,
-      useFactory: returnConfigFactory,
+      provide: LibraryConfigToken,
+      useFactory: returnLibraryConfigFactory,
       deps: [ConfigService],
     },
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
+    SharedUiMyConfigurableComponentModule.forRoot(LibraryConfigToken),
   ],
   bootstrap: [AppComponent],
 })

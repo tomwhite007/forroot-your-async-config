@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 export interface Config {
   loadedMessage: string;
+  libraryConfig: string;
 }
 
 @Injectable({
@@ -26,5 +27,12 @@ export class ConfigService {
       throw new Error('Config not set');
     }
     return this.config;
+  }
+
+  getLibraryConfig() {
+    if (!this.config) {
+      throw new Error('Config not set');
+    }
+    return { libraryConfig: this.config.libraryConfig };
   }
 }

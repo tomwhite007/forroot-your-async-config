@@ -7,6 +7,7 @@ import { LibraryConfig } from './interfaces/library-config';
 @NgModule({
   imports: [CommonModule],
   declarations: [MyConfigurableComponentComponent],
+  exports: [MyConfigurableComponentComponent],
 })
 export class SharedUiMyConfigurableComponentModule {
   static forRoot(

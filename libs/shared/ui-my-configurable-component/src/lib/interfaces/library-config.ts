@@ -1,3 +1,3 @@
 export interface LibraryConfig {
-  loadedMessage: string;
+  libraryConfig: string;
 }
