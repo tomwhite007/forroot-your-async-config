@@ -5,10 +5,8 @@ import { AppComponent } from './app.component';
 import { Config, ConfigService } from './services/config.service';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  LibraryConfigToken,
-  SharedUiMyConfigurableComponentModule,
-} from '@injectors-demo/shared/ui-my-configurable-component';
+import { SharedUiMyConfigurableComponentModule } from '@injectors-demo/shared/ui-my-configurable-component';
+import { ConfigToken } from './tokens/config.token';
 
 const loadAsyncConfigFactory = (buildConfigService: ConfigService) => {
   return (): Promise<Config> => {
@@ -29,7 +27,7 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
       multi: true,
     },
     {
-      provide: LibraryConfigToken,
+      provide: ConfigToken,
       useFactory: returnLibraryConfigFactory,
       deps: [ConfigService],
     },
@@ -37,7 +35,8 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
   imports: [
     BrowserModule,
     HttpClientModule,
-    SharedUiMyConfigurableComponentModule.forRoot(LibraryConfigToken),
+    // SharedUiMyConfigurableComponentModule,
+    SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
   ],
   bootstrap: [AppComponent],
 })
