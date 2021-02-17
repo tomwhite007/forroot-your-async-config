@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedUiMyConfigurableComponentModule } from '@injectors-demo/shared/ui-my-configurable-component';
 import { ConfigToken } from './tokens/config.token';
+import { InjectorsDemoFeatureProvidersTestModule } from '@injectors-demo/injectors-demo/feature-providers-test';
 
 const loadAsyncConfigFactory = (buildConfigService: ConfigService) => {
   return (): Promise<Config> => {
@@ -37,6 +38,7 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
     HttpClientModule,
     // SharedUiMyConfigurableComponentModule,
     SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
+    InjectorsDemoFeatureProvidersTestModule,
   ],
   bootstrap: [AppComponent],
 })

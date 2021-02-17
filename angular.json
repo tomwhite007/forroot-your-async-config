@@ -171,6 +171,31 @@
           }
         }
       }
+    },
+    "injectors-demo-feature-providers-test": {
+      "projectType": "library",
+      "root": "libs/injectors-demo/feature-providers-test",
+      "sourceRoot": "libs/injectors-demo/feature-providers-test/src",
+      "prefix": "injectors-demo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/injectors-demo/feature-providers-test/src/**/*.ts",
+              "libs/injectors-demo/feature-providers-test/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/injectors-demo/feature-providers-test"],
+          "options": {
+            "jestConfig": "libs/injectors-demo/feature-providers-test/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
