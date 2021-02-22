@@ -5,6 +5,7 @@ import { ConfigToken } from './tokens/config.token';
 import { ConfigPathToken } from './tokens/config-path.token';
 import { ConfigService, Config } from './services/config.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MyConfigurableComponentComponent } from 'libs/shared/ui-my-configurable-component/src/lib/my-configurable-component/my-configurable-component.component';
 
 const loadAsyncConfigFactory = (
   buildConfigService: ConfigService,
@@ -36,7 +37,7 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
       deps: [ConfigService],
     },
   ],
-  exports: [SharedUiMyConfigurableComponentModule],
+  exports: [MyConfigurableComponentComponent],
 })
 export class InjectorsDemoFeatureShellModule {
   static forRoot(
