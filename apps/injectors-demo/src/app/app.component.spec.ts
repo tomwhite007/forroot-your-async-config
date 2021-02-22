@@ -1,10 +1,18 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ConfigService } from './services/config.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
+      imports: [HttpClientTestingModule],
+      providers: [
+        { provide: ConfigService, useValue: { getConfig: () => 'test123' } },
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
