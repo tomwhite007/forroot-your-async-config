@@ -1,11 +1,15 @@
 import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedUiMyConfigurableComponentModule } from '@injectors-demo/shared/ui-my-configurable-component';
+import {
+  MyConfigurableComponentComponent,
+  SharedUiMyConfigurableComponentModule,
+} from '@injectors-demo/shared/ui-my-configurable-component';
 import { ConfigToken } from './tokens/config.token';
 import { ConfigPathToken } from './tokens/config-path.token';
 import { ConfigService, Config } from './services/config.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MyConfigurableComponentComponent } from 'libs/shared/ui-my-configurable-component/src/lib/my-configurable-component/my-configurable-component.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 const loadAsyncConfigFactory = (
   buildConfigService: ConfigService,
@@ -22,6 +26,16 @@ const returnLibraryConfigFactory = (buildConfigService: ConfigService) => {
   imports: [
     CommonModule,
     HttpClientModule,
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
+    EffectsModule.forRoot([]),
     SharedUiMyConfigurableComponentModule.forRoot(ConfigToken),
   ],
   providers: [
