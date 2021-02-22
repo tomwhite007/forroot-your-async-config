@@ -1,11 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ConfigService } from './services/config.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
+      providers: [
+        { provide: ConfigService, useValue: { getConfig: () => 'test123' } },
+      ],
       imports: [HttpClientTestingModule],
     }).compileComponents();
   });
