@@ -23,6 +23,9 @@
     },
     "shared-ui-my-configurable-component": {
       "tags": ["scope:shared", "type:ui"]
+    },
+    "injectors-demo-feature-shell": {
+      "tags": ["scope:injectors-demo", "type:feature"]
     }
   }
 }

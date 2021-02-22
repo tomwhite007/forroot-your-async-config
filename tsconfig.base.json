@@ -17,6 +17,9 @@
     "paths": {
       "@injectors-demo/shared/ui-my-configurable-component": [
         "libs/shared/ui-my-configurable-component/src/index.ts"
+      ],
+      "@injectors-demo/injectors-demo/feature-shell": [
+        "libs/injectors-demo/feature-shell/src/index.ts"
       ]
     }
   },
